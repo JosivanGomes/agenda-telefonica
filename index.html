@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="agendaTel" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Telefônica</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <h1>Agenda Telefônica</h1>
+    <div class="container" ng-controller="AgendaTelController">
+    <div>
+        <table>
+            <input type="text" placeholder="Buscar Contato" ng-model="params">
+            <div ng-repeat="busca in buscaContato(params)">
+                {{busca.nome + ' - ' + busca.fone}}
+            </div>
+            
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+    
+
+            <tr ng-repeat="contato in imprimeContatos()">
+                <td colspan= {{smsSemContatos()}} ng-repeat="(key, value) in contato">
+                    {{value}}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <form>
+            <input type="text" ng-model="contato.nome" placeholder="Nome">
+            <input type="text" ng-model="contato.fone" placeholder="Telefone">
+            <button ng-click="addContatos(contato)">Adicionar Contato</button>
+        </form>
+
+
+    </div>
+</div>
+    
+    
+</body>
+</html>
